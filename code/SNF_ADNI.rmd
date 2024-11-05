@@ -1,8 +1,6 @@
 #running SNF on ADNI data
 #run this after determining k, alpha, and t using SNF_ADNI_params.Rmd
 
-```{r load-library, echo = FALSE, warning = FALSE, message = FALSE}
-
 # code to include libraries
 
 if (!require("SNFtool")) install.packages("SNFtool")
@@ -30,10 +28,7 @@ library(ADNIMERGE)
 #https://github.com/gracejacobs/SNF-NDD-Clustering/blob/master/code/1_Running_SNF_analysis/robust_core-clustering_function.R
 source("robust_core-clustering_function.R")
 
-```
-
-
-```{r data}
+#data
 
 #-Clinical Dementia Rating
 d1 <- cdr
@@ -171,12 +166,9 @@ residual_df <- data.frame(participant = combined_df$participant, residual_matrix
 residual_matrix <- as.matrix(residual_df[-1])  
 # Exclude participant column for matrix format 
 
+#--------------------------------------#
 
-```
-
-### Running SNF after params
-
-```{r SNF}
+# Running SNF after params
 
 # normalizing measures using function from SNF package for continuous variables but optional.
 thicknessAvg = standardNormalization(thicknessAvg)
@@ -297,8 +289,6 @@ unreliable.patients = UnrelClustPatientsFullCohort(core.clustering.list = robust
 # Check if anyone doesn't reliably cluster within their given cluster group
 unreliable.patients.by.grp = UnrelClustPatientsByGrp(core.clustering.list = robust.W,id.group.df = robust.groups.df,verbose = TRUE)
 
-
-```
 
 
 
